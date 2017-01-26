@@ -1,0 +1,14 @@
+# specify which database and adapter to use for which environment
+
+development:
+  adapter: postgresql
+  database: bike-share-development
+
+test:
+  adapter: postgresql
+  database: bike-share-test
+
+production:
+  adapter: postgresql
+  database: bike-share-production
+

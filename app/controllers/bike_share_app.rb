@@ -1,7 +1,7 @@
 class BikeShareApp < Sinatra::Base
 
   get "/" do
-    erb :
+    erb :home
   end
 
   get "/stations" do
@@ -47,4 +47,5 @@ class BikeShareApp < Sinatra::Base
     @station = Station.destroy(params[:id])
     redirect "/stations"
   end
+
 end

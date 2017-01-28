@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170127013318) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "dock_counts", force: :cascade do |t|tu
+  create_table "dock_counts", force: :cascade do |t|
     t.integer  "dock_number"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

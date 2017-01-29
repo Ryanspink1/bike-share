@@ -6,8 +6,8 @@ describe "When user visits index" do
     it "for one station " do
       Station.create(name: "Station Name",
                     city_id: City.find_or_create_by(name: "Denver").id,
-                    dock_count_id: DockCount.find_or_create_by(dock_number: 15).id,
-                    installation_date_id: InstallationDate.find_or_create_by(installation_date: 20100102).id)
+                    dock_count: 15,
+                    installation_date: "8/7/2016")
 
       visit('/stations')
 
@@ -27,8 +27,8 @@ describe "When user visits index" do
     it "to edit" do
       Station.create(name: "Station Name",
                     city_id: City.find_or_create_by(name: "Denver").id,
-                    dock_count_id: DockCount.find_or_create_by(dock_number: 15).id,
-                    installation_date_id: InstallationDate.find_or_create_by(installation_date: "8/7/2016").id)
+                    dock_count: 15,
+                    installation_date: "8/7/2016")
       visit('/stations')
 
       expect(page).to have_link("Edit")
@@ -39,8 +39,8 @@ describe "When user visits index" do
     it "to delete" do
       Station.create(name: "Station Name",
                     city_id: City.find_or_create_by(name: "Denver").id,
-                    dock_count_id: DockCount.find_or_create_by(dock_number: 15).id,
-                    installation_date_id: InstallationDate.find_or_create_by(installation_date: "8/7/2016").id)
+                    dock_count: 15,
+                    installation_date: "8/7/2016")
       visit('/stations')
 
       expect page.has_button?("Delete")

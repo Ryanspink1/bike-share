@@ -5,8 +5,8 @@ describe "When user clicks the edit button" do
   it "They are taken to a new page" do
     Station.create(name: "Station Name",
                   city_id: City.find_or_create_by(name: "Denver").id,
-                  dock_count_id: DockCount.find_or_create_by(dock_number: 15).id,
-                  installation_date_id: InstallationDate.find_or_create_by(installation_date: "8/7/2016").id)
+                  dock_count: 15,
+                  installation_date: "08/07/2016")
 
     visit('/stations')
     find_link("Edit").click
@@ -18,8 +18,8 @@ describe "When user clicks the edit button" do
     it "and update a station" do
       Station.create(name: "Station Name",
                     city_id: City.find_or_create_by(name: "Denver").id,
-                    dock_count_id: DockCount.find_or_create_by(dock_number: 15).id,
-                    installation_date_id: InstallationDate.find_or_create_by(installation_date: '20090712').id)
+                    dock_count: 15,
+                    installation_date: "08/07/2016")
 
       station = Station.find(1)
 

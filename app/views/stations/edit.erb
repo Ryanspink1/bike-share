@@ -7,8 +7,8 @@
   <label for="">City</label>
   <input type="text" name="city[name]" value="<%= @station.city.name %>"/>
   <label for="">Dock Count</label>
-  <input type="number" name="dock_count[dock_number]" value="<%= @station.dock_count.dock_number %>"/>
+  <input type="number" name="station[dock_count]" value="<%= @station.dock_count %>"/>
   <label for="">Installation Date</label>
-  <input type="date" name="installation_date[installation_date]" value="<%= @station.installation_date.installation_date %>"/>
+  <input type="date" name="station[installation_date]" value="<%= @station.installation_date %>"/>
   <input type="submit" value="Update Station" />
 </form>

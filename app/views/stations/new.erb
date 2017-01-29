@@ -1,0 +1,14 @@
+<h1>Create a New Station</h1>
+
+<form action="/stations" method="post">
+  <label>Name:</label>
+  <input type="textfield" name="station[name]">
+  <label>City:</label>
+  <input type="textfield" name="city[name]">
+  <label>Dock Count:</label>
+  <input type="textfield" name="station[dock_count]">
+  <label>Installation Date:</label>
+  <input type="date" name="station[installation_date]">
+
+  <input type="submit" value="Create New Station" />
+</form>

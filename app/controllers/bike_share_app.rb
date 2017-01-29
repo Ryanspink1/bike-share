@@ -49,8 +49,9 @@ class BikeShareApp < Sinatra::Base
   end
 
   get "/station-dashboard" do
-    @stations = Station.all
-
+    @stations = Station
+    @dock_min = Station.minimum(:dock_count)
+    @dock_max = Station.maximum(:dock_count)
     erb :"stations/dashboard"
   end
 

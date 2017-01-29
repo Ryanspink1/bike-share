@@ -1,0 +1,10 @@
+.custom-nav li a {
+  text-decoration: none;
+  color: black;
+}
+
+.custom-nav {
+  padding: 10px 0 10px 0;
+  color: black;
+  background: #c4c4c4;
+}

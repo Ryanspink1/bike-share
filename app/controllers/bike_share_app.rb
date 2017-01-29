@@ -19,8 +19,12 @@ class BikeShareApp < Sinatra::Base
   post "/stations" do
     ## if you want to have the user select city, installation date, and/or block count with a text field,
     ##     you must create a new object or find an existing object with the data the user entered and then replace that text with the id in the parameters to create the station
-    ##     params[:city] = City.find_or_create_by(name: params[:city]).id
-    @station = Station.create(params[:station])
+    ##     params[:city] = City.find_or_create_by(name: params[:city]).
+    # binding.pry
+    @station = Station.create(name: params[:station][:name],
+     city_id: City.find_or_create_by(params[:city]).id,
+     dock_count_id: DockCount.find_or_create_by(params[:dock_count]).id,
+     installation_date_id: InstallationDate.find_or_create_by(params[:installation_date]).id)
     redirect "/stations/#{@station.id}"
   end
 

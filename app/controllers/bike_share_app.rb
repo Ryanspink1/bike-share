@@ -45,7 +45,6 @@ class BikeShareApp < Sinatra::Base
      installation_date_id: InstallationDate.find_or_create_by(params[:installation_date]).id)
 
     @station = Station.find(params[:id])
-     binding.pry
 
     redirect "/stations/#{@station.id}"
   end
@@ -53,6 +52,12 @@ class BikeShareApp < Sinatra::Base
   delete "/stations/:id" do
     @station = Station.destroy(params[:id])
     redirect "/stations"
+  end
+
+  get "/station-dashboard" do
+    @stations = Station.all
+
+    erb :"stations/dashboard"
   end
 
 end

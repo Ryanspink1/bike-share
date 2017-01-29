@@ -1,3 +1,4 @@
+ENV['RACK_ENV'] = 'test'
 require_relative '../spec_helper'
 
 describe "When user clicks the edit button" do

@@ -8,7 +8,6 @@ class Trip < ActiveRecord::Base
   validates :end_station_id, presence: true
   validates :bike_id, presence: true
   validates :subscription_type, presence: true
-  # validates :zip_code, presence: true
 
   def duplicate?
     trip = Trip.find_by(
@@ -30,4 +29,5 @@ class Trip < ActiveRecord::Base
       @name, @city, @state, @department, @picture
     )
   end
+
 end

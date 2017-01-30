@@ -6,6 +6,7 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 
 group :development, :test do
+  gem 'activerecord-import'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'

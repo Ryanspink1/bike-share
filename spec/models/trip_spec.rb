@@ -13,7 +13,6 @@ RSpec.describe Trip do
       )
 
       expect(trip).to_not be_valid
-
     end
 
     it 'validates presence of start_date' do

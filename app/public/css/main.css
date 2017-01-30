@@ -8,3 +8,13 @@
   color: black;
   background: #c4c4c4;
 }
+
+td, th {
+	padding: 5px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+body {
+	padding: 10px;
+}

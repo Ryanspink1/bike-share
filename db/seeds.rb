@@ -48,25 +48,25 @@ end.uniq!
 
 trips = []
 trips_list.each_with_index do |row, i|
-    trip = Trip.new(
-      duration:          row[0],
-      start_date:        DateTime.strptime(row[1], "%m/%d/%Y %H:%M"),
-      start_station_id:  row[2],
-      end_date:          DateTime.strptime(row[3], "%m/%d/%Y %H:%M"),
-      end_station_id:    row[4],
-      bike_id:           row[5],
-      subscription_type: row[6].downcase,
-      zip_code:          (row[7].rjust(5, "0") unless row[7].nil?)
-    )
-    if trips.length == 50000 || i == trips_list.length - 1
-      Trip.import trips
-      trips = []
-    else
-      trips << trip
-    end
+  trip = Trip.new(
+    duration:          row[0],
+    start_date:        DateTime.strptime(row[1], "%m/%d/%Y %H:%M"),
+    start_station_id:  row[2],
+    end_date:          DateTime.strptime(row[3], "%m/%d/%Y %H:%M"),
+    end_station_id:    row[4],
+    bike_id:           row[5],
+    subscription_type: row[6].downcase,
+    zip_code:          (row[7].rjust(5, "0") unless row[7].nil?)
+  )
+  if trips.length == 50000 || i == trips_list.length - 1
+    Trip.import trips
+    trips = []
+  else
+    trips << trip
+  end
 end
 
 end_time = Time.now
-duration = (end_time - start_time) / 60).round(2)
+duration = ((end_time - start_time) / 60).round(2)
 
 puts "trip.csv file upload complete! (#{Trip.count} records in #{duration} minutes)"

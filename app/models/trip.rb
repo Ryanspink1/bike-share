@@ -9,25 +9,34 @@ class Trip < ActiveRecord::Base
   validates :bike_id, presence: true
   validates :subscription_type, presence: true
 
-  def duplicate?
-    trip = Trip.find_by(
-      duration:          self.duration,
-      start_date:        self.start_date,
-      start_station_id:  self.start_station_id,
-      end_date:          self.end_date,
-      end_station_id:    self.end_station_id,
-      bike_id:           self.bike_id,
-      subscription_type: self.subscription_type,
-      zip_code:          self.zip_code
-    )
-    !trip.nil?
+  DURATION_FORMAT = "%H:%M:%S"
+  DATE_FORMAT = "%m/%d/%Y %H:%M:%S"
+
+  def formatted_duration
+    Time.at(self.duration).utc.strftime(DURATION_FORMAT)
   end
 
-  def save
-    @database.execute(
-      "INSERT INTO robots (name, city, state, department, picture) VALUES (?, ?, ?, ?, ?);",
-      @name, @city, @state, @department, @picture
-    )
+  def formatted_start_date
+    self.start_date.strftime(DATE_FORMAT)
+  end
+
+  def formatted_end_date
+    self.end_date.strftime(DATE_FORMAT)
+  end
+
+  def self.subscription_type_list
+    ["customer", "subscriber"]
+  end
+
+  def self.format_parameters(data)
+    data["start_date"] = Trip.unformatted_date(data[:start_date])
+    data["end_date"]   = Trip.unformatted_date(data[:end_date])
+    data["duration"]   = (data["end_date"] - data["start_date"]).to_i
+    data
+  end
+
+  def self.unformatted_date(date_str)
+    Time.strptime(date_str, DATE_FORMAT)
   end
 
 end

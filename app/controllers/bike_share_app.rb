@@ -85,6 +85,7 @@ class BikeShareApp < Sinatra::Base
       subscription_type: params[:trip][:subscription_type],
       zip_code:          params[:trip][:zip_code]
     )
+    
     redirect "/trips/#{@trip.id}"
   end
 
@@ -120,4 +121,5 @@ class BikeShareApp < Sinatra::Base
     @trip = Trip.destroy(params[:id])
     redirect "/trips"
   end
+
 end

@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'sinatra', require: 'sinatra/base'
-gem 'pg'
 gem 'activerecord'
+gem 'pg'
+gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-activerecord'
+gem 'will_paginate', '~> 3.1.0'
 
 group :development, :test do
+  gem 'activerecord-import'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'

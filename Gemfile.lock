@@ -7,6 +7,8 @@ GEM
       activemodel (= 5.0.0.1)
       activesupport (= 5.0.0.1)
       arel (~> 7.0)
+    activerecord-import (0.17.0)
+      activerecord (>= 3.2)
     activesupport (5.0.0.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
@@ -90,6 +92,7 @@ GEM
       sinatra (>= 1.2.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    will_paginate (3.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -98,6 +101,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  activerecord-import
   capybara
   database_cleaner
   launchy
@@ -111,6 +115,7 @@ DEPENDENCIES
   sinatra
   sinatra-activerecord
   tux
+  will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.13.7
+   1.14.3

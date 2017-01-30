@@ -8,6 +8,6 @@ class Station < ActiveRecord::Base
   validates  :installation_date, presence: true
 
   def self.average_bikes
-    Station.sum(:dock_count)
+    sum(:dock_count)
   end
 end

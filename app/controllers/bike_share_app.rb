@@ -55,4 +55,54 @@ class BikeShareApp < Sinatra::Base
     erb :"stations/dashboard"
   end
 
+  get "/trips" do
+    @trips = Trip.all
+    erb :"trips/index"
+  end
+
+  get "/trips/new" do
+    erb :"trips/new"
+  end
+
+  post "/trips" do
+    @trip = Trip.create(duration: params[:trip][:duration],
+     start_date: params[:trip][:start_date],
+     start_station_id: params[:trip][:start_station_id],
+     end_date: params[:trip][:end_date],
+     end_station_id: params[:trip][:end_station_id],
+     bike_id: params[:trip][:bike_id],
+     subscription_type: params[:trip][:subscription_type],
+     zip_code: params[:trip][:zip_code])
+    redirect "/trips/#{@trip.id}"
+  end
+
+  get "/trips/:id" do
+    @trip = Trip.find(params[:id])
+    erb :"trips/show"
+  end
+
+  get "/trips/:id/edit" do
+    @trip = Trip.find(params[:id])
+    erb :"trips/edit"
+  end
+
+  put "/trips/:id" do
+    Trip.update(duration: params[:trip][:duration],
+     start_date: params[:trip][:start_date],
+     start_station_id: params[:trip][:start_station_id],
+     end_date: params[:trip][:end_date],
+     end_station_id: params[:trip][:end_station_id],
+     bike_id: params[:trip][:bike_id],
+     subscription_type: params[:trip][:subscription_type],
+     zip_code: params[:trip][:zip_code])
+
+    @trip = Trip.find(params[:id])
+
+    redirect "/trips/#{@trip.id}"
+  end
+
+  delete "/trips/:id" do
+    @trip = Trip.destroy(params[:id])
+    redirect "/trips"
+  end
 end

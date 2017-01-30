@@ -1,9 +1,9 @@
 <h1>Stats</h1>
 
-<h4>Total count of stations: <%= @stations.count %></h4>
-<h4>Average bikes available per station: <%= @stations.average(:dock_count).round(0).to_i %></h4>
-<h4>Most bikes available at a station: <%= @dock_max %></h4>
-<h4>Stations where the most bikes are available: </h4>
+<h4 id='station_count'>Total count of stations: <%= @stations.count %></h4>
+<h4 id='average_bikes'>Average bikes available per station: <%= @stations.average(:dock_count).round(0).to_i %></h4>
+<h4 id='most_bikes_at_station'>Most bikes available at a station: <%= @dock_max %></h4>
+<h4 id='stations_with_most_bikes'>Stations where the most bikes are available: </h4>
 <ul>
   <% @stations.where(dock_count: @dock_max).each do |station| %>
     <li>
@@ -11,8 +11,8 @@
     </li>
   <% end %>
 </ul>
-<h4>Fewest bikes available at a station: <%= @dock_min %></h4>
-<h4>Stations where the fewest bikes are available: </h4>
+<h4 id='fewest_bikes_at_station'>Fewest bikes available at a station: <%= @dock_min %></h4>
+<h4 id='stations_with_fewest_bikes'>Stations where the fewest bikes are available: </h4>
 <ul>
   <% @stations.where(dock_count: @dock_min).each do |station| %>
     <li>
@@ -20,5 +20,5 @@
     </li>
   <% end %>
 </ul>
-<h4>Newest station: <%= @stations.maximum(:installation_date) %></h4>
-<h4>Oldest station: <%= @stations.minimum(:installation_date) %></h4>
+<h4 id='newest_station'>Newest station: <%= @stations.maximum(:installation_date) %></h4>
+<h4 id='oldest_station'>Oldest station: <%= @stations.minimum(:installation_date) %></h4>

@@ -1,0 +1,52 @@
+<div class="container">
+
+  <h1>Create a New Trip</h1>
+
+  <form action="/trips" method="post">
+    <div class="form-group">
+      <label>Start Station:</label>
+      <select class = "form-control" name='trip[start_station_id]'>
+        <% @stations.each do |station| %>
+        <option value=<%= station.id %> ><%= station.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="form-group">
+    <label>End Station</label>
+      <select class="form-control" name="trip[end_station_id]">
+        <% @stations.each do |station| %>
+        <option value=<%= station.id %> ><%= station.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Duration:</label>
+      <input class= "form-control" type="number" name="trip[duration]" placeholder="000">
+    </div>
+    <div class="form-group">
+      <label>Start Date:</label>
+      <input class="form-control" type="datetime" name="trip[start_date]" value= "<%= DateTime.now.strftime("%m/%d/%Y %H:%M:%S") %>"><br />
+    </div>
+    <div class="form-group">
+      <label>End Date:</label>
+      <input class="form-control" type="datetime" name="trip[end_date]" value= "<%= DateTime.now.strftime("%m/%d/%Y %H:%M:%S") %>"><br />
+    </div>
+    <div class="form-group">
+      <label>Bike ID:</label>
+      <input class="form-control" type="number" name="trip[bike_id]" placeholder="000" />
+    </div>
+    <div class="form-group">
+      <label>Subscription Type</label>
+      <select class="form-control" name="trip[subscription_type]">
+        <option value="subscriber">Subscriber</option>
+        <option value="customer">Customer</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Zip Code</label>
+      <input class="form-control" type="text" name="trip[zip_code]" placeholder="00000"/>
+    </div>
+
+    <input class="btn btn-default" type="submit" value="Create New Trip" />
+  </form>
+</div>

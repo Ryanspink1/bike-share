@@ -8,3 +8,19 @@
   color: black;
   background: #c4c4c4;
 }
+
+
+.custom-form {
+  padding: 10px 50px 10px 50px;
+}
+
+td, th {
+	padding: 5px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+body {
+	padding: 10px;
+}
+

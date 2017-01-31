@@ -14,10 +14,10 @@ describe "When user visits index" do
       within("h1") do
         expect page.has_content?("Stations")
       end
-      within("h3") do
+      within("#station-name") do
         expect page.has_content?("Station Name")
       end
-      within(".city") do
+      within("#city") do
         expect page.has_content?("Denver")
       end
     end

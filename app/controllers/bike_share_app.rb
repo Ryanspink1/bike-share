@@ -1,5 +1,9 @@
 require 'pry'
+require 'will_paginate'
+require 'will_paginate/active_record'
+
 class BikeShareApp < Sinatra::Base
+  include WillPaginate::Sinatra::Helpers
 
   get "/" do
     erb :"home/home"
@@ -15,10 +19,13 @@ class BikeShareApp < Sinatra::Base
   end
 
   post "/stations" do
-    @station = Station.create(name: params[:station][:name],
-     city_id: City.find_or_create_by(params[:city]).id,
-     dock_count: params[:station][:dock_count],
-     installation_date: params[:station][:installation_date])
+    @station = Station.create(
+      name:              params[:station][:name],
+      city_id:           City.find_or_create_by(params[:city]).id,
+      dock_count:        params[:station][:dock_count],
+      installation_date: params[:station][:installation_date]
+    )
+
     redirect "/stations/#{@station.id}"
   end
 
@@ -33,10 +40,12 @@ class BikeShareApp < Sinatra::Base
   end
 
   put "/stations/:id" do
-    Station.update(name: params[:station][:name],
-     city_id: City.find_or_create_by(params[:city]).id,
-     dock_count: params[:station][:dock_count],
-     installation_date: params[:station][:installation_date])
+    Station.update(params[:id].to_i,
+      name:              params[:station][:name],
+      city_id:           City.find_or_create_by(params[:city]).id,
+      dock_count:        params[:station][:dock_count],
+      installation_date: params[:station][:installation_date]
+    )
 
     @station = Station.find(params[:id])
 
@@ -49,10 +58,50 @@ class BikeShareApp < Sinatra::Base
   end
 
   get "/station-dashboard" do
-    @stations = Station
-    @dock_min = Station.minimum(:dock_count)
-    @dock_max = Station.maximum(:dock_count)
+    @stations = Station.all
     erb :"stations/dashboard"
+  end
+
+  get "/trips" do
+    @trips = Trip.all.order(start_date: :desc)
+    @trips = @trips.paginate(page: params[:page], per_page: 30)
+    erb :"trips/index"
+  end
+
+  get "/trips/new" do
+    @stations = Station.all
+    erb :"trips/new"
+  end
+
+  post "/trips" do
+    params["trip"] = Trip.format_parameters(params[:trip])
+    @trip = Trip.create(params[:trip])
+
+    redirect "/trips/#{@trip.id}"
+  end
+
+  get "/trips/:id" do
+    @trip = Trip.find(params[:id])
+    erb :"trips/show"
+  end
+
+  get "/trips/:id/edit" do
+    @trip = Trip.find(params[:id])
+    @stations = Station.all
+    @subscription_type_list = Trip.subscription_type_list
+    erb :"trips/edit"
+  end
+
+  put "/trips/:id" do
+    params["trip"] = Trip.format_parameters(params[:trip])
+    Trip.update(params[:id].to_i, params[:trip])
+
+    redirect "/trips/#{params[:id].to_i}"
+  end
+
+  delete "/trips/:id" do
+    @trip = Trip.destroy(params[:id])
+    redirect "/trips"
   end
 
 end

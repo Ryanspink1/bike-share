@@ -1,0 +1,41 @@
+<h1>Trips</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Start Station</th>
+    <th>End Station</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Duration</th>
+    <th>Bike ID</th>
+    <th>Subscription Type</th>
+    <th>Zip Code</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @trips.each do |trip| %>
+      <tr>
+        <td><%= trip.start_station.name %></td>
+        <td><%= trip.end_station.name %></td>
+        <td><%= trip.formatted_start_date %></td>
+        <td><%= trip.formatted_end_date %></td>
+        <td><%= trip.formatted_duration %></td>
+        <td><%= trip.bike_id %></td>
+        <td><%= trip.subscription_type.capitalize %></td>
+        <td><%= trip.zip_code %></td>
+        <td>
+          <a href="/trips/<%= trip.id %>" class="details-button"><button>Details</button></a>
+            <a href="/trips/<%= trip.id %>/edit" class="edit-button"><button>Edit</button></a>
+          <form action="/trips/<%= trip.id %>" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" name="Delete" value="Delete" class="button delete-button">
+          </form>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @trips %>

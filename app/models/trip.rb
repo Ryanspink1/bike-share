@@ -29,14 +29,22 @@ class Trip < ActiveRecord::Base
   end
 
   def self.format_parameters(data)
+    data["duration"]   = Trip.calculate_duration(data[:start_date], data[:end_date])
     data["start_date"] = Trip.unformatted_date(data[:start_date])
     data["end_date"]   = Trip.unformatted_date(data[:end_date])
-    data["duration"]   = (data["end_date"] - data["start_date"]).to_i
+    data["zip_code"]   = data[:zip_code].rjust(5,"0") unless data[:zip_code].empty?
     data
   end
 
   def self.unformatted_date(date_str)
-    Time.strptime(date_str, DATE_FORMAT)
+    DateTime.strptime(date_str, DATE_FORMAT)
   end
+
+  def self.calculate_duration(start_date_str, end_date_str)
+    start_time = Time.strptime(start_date_str, DATE_FORMAT)
+    end_time   = Time.strptime(end_date_str, DATE_FORMAT)
+    (end_time - start_time).to_i
+  end
+
 
 end

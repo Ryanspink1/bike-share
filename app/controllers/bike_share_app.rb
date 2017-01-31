@@ -25,6 +25,7 @@ class BikeShareApp < Sinatra::Base
       dock_count:        params[:station][:dock_count],
       installation_date: params[:station][:installation_date]
     )
+
     redirect "/stations/#{@station.id}"
   end
 
@@ -77,7 +78,7 @@ class BikeShareApp < Sinatra::Base
   post "/trips" do
     params["trip"] = Trip.format_parameters(params[:trip])
     @trip = Trip.create(params[:trip])
-    
+
     redirect "/trips/#{@trip.id}"
   end
 

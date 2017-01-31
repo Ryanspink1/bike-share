@@ -7,9 +7,11 @@ describe "When a user submits a form for a new station" do
 
     fill_in('station[name]', :with => 'Beat Street')
     fill_in('city[name]', :with => 'Denver')
-    fill_in('station[dock_count]', :with => '10')
+    fill_in('station[dock_count]', :with => 10)
     fill_in('station[installation_date]', :with => '20170102')
-    click_button("Create New Station")
+    click_button("New Station")
+
+    # binding.pry
     expect(Station.find(1)).to be_valid
     end
 end
@@ -22,8 +24,9 @@ describe "When a user submits a form for a new station" do
     fill_in('city[name]', :with => 'Denver')
     fill_in('station[dock_count]', :with => '10')
     fill_in('station[installation_date]', :with => '20170102')
-    click_button("Create New Station")
-    expect page.has_current_path?('/stations/1/show')
+    click_button("New Station")
+
+    expect page.has_current_path?('/stations/1')
   end
 end
 # rake db:test:prepare

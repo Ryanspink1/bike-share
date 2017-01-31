@@ -1,6 +1,16 @@
-<h1 class="station_name"><%= @station.name %></h1>
-
-<h2>Info</h2>
-  <h5 class="city">City: <%= @station.city.name%> </h5>
-  <h5 class="dock">Dock Count: <%= @station.dock_count%></h5>
-  <h5 class="install_date">Installation Date: <%= @station.installation_date%></h5>
+<div class="container">
+  <table class="table">
+    <tr>
+      <th>Station Name</th>
+      <th>City</th>
+      <th>Dock Count</th>
+      <th>Installation Date</th>
+    </tr>
+    <tr>
+      <td class="station-name"><%= @station.name %></td>
+      <td class="city"><%= @station.city.name%></td>
+      <td class="dock"><%= @station.dock_count%></td>
+      <td class="install_date"><%= @station.installation_date%></td>
+    </tr>
+  </table>
+</div>

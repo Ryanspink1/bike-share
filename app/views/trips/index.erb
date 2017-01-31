@@ -26,11 +26,11 @@
         <td><%= trip.subscription_type.capitalize %></td>
         <td><%= trip.zip_code %></td>
         <td>
-          <a href="/trips/<%= trip.id %>"><button>Details</button></a>
-            <a href="/trips/<%= trip.id %>/edit"><button>Edit</button></a>
+          <a href="/trips/<%= trip.id %>" class="details-button"><button>Details</button></a>
+            <a href="/trips/<%= trip.id %>/edit" class="edit-button"><button>Edit</button></a>
           <form action="/trips/<%= trip.id %>" method="post">
             <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" name="Details" value="Delete" class="button">
+            <input type="submit" name="Delete" value="Delete" class="button delete-button">
           </form>
         </td>
       </tr>

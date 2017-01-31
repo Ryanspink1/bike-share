@@ -43,7 +43,10 @@
         <option value="<%= subscription_type %>" ><%= subscription_type.capitalize %></option>
       <% end %>
     <% end %>
-  </select><br><br><br>
+  </select><br><br>
+
+  <label for="">Zip Code</label><br>
+  <input type="textfield" name="trip[zip_code]" value="<%= @trip.zip_code %>"><br><br><br>
 
 
   <input type="submit" value="Submit" />

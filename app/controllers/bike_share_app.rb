@@ -57,9 +57,7 @@ class BikeShareApp < Sinatra::Base
   end
 
   get "/station-dashboard" do
-    @stations = Station
-    @dock_min = Station.minimum(:dock_count)
-    @dock_max = Station.maximum(:dock_count)
+    @stations = Station.all
     erb :"stations/dashboard"
   end
 
@@ -113,7 +111,7 @@ class BikeShareApp < Sinatra::Base
       zip_code:          params[:trip][:zip_code]
     )
 
-    redirect "/trips/#{@trip.id}"
+    redirect "/trips/#{params[:id].to_i}"
   end
 
   delete "/trips/:id" do

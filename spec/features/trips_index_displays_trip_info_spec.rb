@@ -3,7 +3,7 @@ require_relative "../spec_helper"
 
 describe "When user visits the trips index..." do
   it "they see all of the headers" do
-    setup
+    setup_1
 
     visit("/trips")
 
@@ -24,7 +24,7 @@ describe "When user visits the trips index..." do
 
   describe "they see all of the data..." do
     it "for one trip" do
-      setup
+      setup_1
       visit("/trips")
 
       table_cells = page.all("tr td")
@@ -60,7 +60,7 @@ describe "When user visits the trips index..." do
     end
 
     it "for two trips" do
-      setup2
+      setup_2
       visit("/trips")
 
       table_cells = page.all("tr td")
@@ -128,91 +128,72 @@ describe "When user visits the trips index..." do
 
   describe "they can click on the details link and it takes them to the details page..." do
     it "for one trip" do
-      setup
+      setup_1
       visit("/trips")
-      table_cells = page.all("tr td")
-      within(table_cells[8]) do
-        find(".details-button").click
-      end
+
+      page.all(".details-button")[0].click
       expect page.has_current_path?("/trips/1")
     end
     it "for two trips" do
-      setup2
+      setup_2
       visit("/trips")
-      table_cells = page.all("tr td")
 
-      within(table_cells[8]) do
-        find(".details-button").click
-      end
+      page.all(".details-button")[0].click
       expect page.has_current_path?("/trips/2")
 
       visit("/trips")
-      within(table_cells[17]) do
-        find(".details-button").click
-      end
+      page.all(".details-button")[1].click
       expect page.has_current_path?("/trips/1")
     end
   end
 
   describe "they can click on the edit link and it takes them to the edit page..." do
     it "for one trip" do
-      setup
+      setup_1
       visit("/trips")
       table_cells = page.all("tr td")
-      within(table_cells[8]) do
-        find(".edit-button").click
-      end
+      page.all(".edit-button")[0].click
       expect page.has_current_path?("/trips/1/edit")
     end
     it "for two trips" do
-      setup2
+      setup_2
       visit("/trips")
       table_cells = page.all("tr td")
 
-      within(table_cells[8]) do
-        find(".edit-button").click
-      end
+      page.all(".edit-button")[0].click
       expect page.has_current_path?("/trips/2/edit")
 
       visit("/trips")
-      within(table_cells[17]) do
-        find(".edit-button").click
-      end
+      page.all(".edit-button")[1].click
       expect page.has_current_path?("/trips/1/edit")
     end
   end
 
   describe "they can click on the delete button and it deletes the record..." do
-    it "for one trip" do
-      setup
+    it "with one trip" do
+      setup_1
       visit("/trips")
-      table_cells = page.all("tr td")
-      within(table_cells[8]) do
-        find(".delete-button").click
-      end
 
-      table_cells = page.all("tr td")
-      expect(table_cells[8]).not_to be_present
+      page.all(".delete-button")[0].click
+
       expect page.has_current_path?("/trips")
+      expect(page.all("tr td")).not_to be_present
     end
-    it "for two trips" do
-      setup2
+    it "with two trips" do
+      setup_2
       visit("/trips")
-      table_cells = page.all("tr td")
 
-      within(table_cells[17]) do
-        find(".edit-button").click
-      end
-      table_cells = page.all("tr td")
-      expect(table_cells[17]).not_to be_present
+      page.all(".delete-button")[1].click
+
+      expect(page.all("tr td")[9]).not_to be_present
       expect page.has_current_path?("/trips/1/edit")
     end
   end
 end
 
 
-def setup2
-  setup
+def setup_2
+  setup_1
   Trip.create(
     duration:          300,
     start_date:        "01/01/2017 12:10:00",
@@ -225,7 +206,7 @@ def setup2
   )
 end
 
-def setup
+def setup_1
   City.create(name: "Denver")
   Station.create(
     name:              "New Victoria St",

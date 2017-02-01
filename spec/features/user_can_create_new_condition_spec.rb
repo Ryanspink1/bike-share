@@ -18,27 +18,14 @@ describe "When user submits a form" do
     click_button("Submit")
     expect page.has_current_path?('/conditions/1')
 
-    within(".date") do
-      expect page.has_content?("80")
-    end
-    within(".max-temperature") do
-      expect page.has_content?("50")
-    end
-    within(".min-temperature") do
-      expect page.has_content?("72")
-    end
-    within(".mean-temperature") do
-      expect page.has_content?("12")
-    end
-    within(".mean-visibility") do
-      expect page.has_content?("80")
-    end
-    within(".mean-wind-speed") do
-      expect page.has_content?("5")
-    end
-    within(".mean-precipitation") do
-      expect page.has_content?("0.5")
-    end
+    expect(page.all("//td[@class='date']")[0].text).to eq("01/02/2017")
+    expect(page.all("//td[@class='max-temperature']")[0].text).to eq("80")
+    expect(page.all("//td[@class='min-temperature']")[0].text).to eq("50")
+    expect(page.all("//td[@class='mean-temperature']")[0].text).to eq("72")
+    expect(page.all("//td[@class='mean-humidity']")[0].text).to eq("12")
+    expect(page.all("//td[@class='mean-visibility']")[0].text).to eq("80")
+    expect(page.all("//td[@class='mean-wind-speed']")[0].text).to eq("5")
+    expect(page.all("//td[@class='mean-precipitation']")[0].text).to eq("0.5")
 
   end
 end

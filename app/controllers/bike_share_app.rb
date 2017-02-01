@@ -114,8 +114,9 @@ class BikeShareApp < Sinatra::Base
   end
 
   post "/conditions" do
-    ## We need something in here that will also update the Trips once the condition is created.
+    params[:condition] = Condition.format_parameters(params[:condition])
     @condition = Condition.create(params[:condition])
+    @condition.remove_id_from_trips unless @condition.date_same?
 
     redirect "/conditions/#{@condition.id}"
   end
@@ -131,15 +132,15 @@ class BikeShareApp < Sinatra::Base
   end
 
   put "/conditions/:id" do
-    ## We need something in here that will also update the Trips once the condition is created.
     @condition = Condition.find(params[:id])
+    @condition.remove_id_from_trips unless @condition.date_same?
 
     redirect "/conditions/#{@condition.id}"
   end
 
   delete "/conditions/:id" do
-    ## We need something in here that will also update the Trips once the condition is deleted.
     @condition = Condition.destroy(params[:id])
+    @condition.remove_id_from_trips
     redirect "/conditions"
   end
 

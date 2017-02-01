@@ -12,25 +12,31 @@
       <th>Mean Visibility</th>
       <th>Mean Wind Speed</th>
       <th>Mean Precipitaton</th>
+      <th>Details</th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
-    <% @stations.each do |station| %>
+    <% @conditions.each do |condition| %>
       <tr>
         <!-- Need to change these ids to a class to follow form from station index -->
-        <td id="station-name"><a href='/conditions/<%= condition.id %>'><%= condition.date %></a></td>
-        <td id="city"><%= condition.max_temperature%> </td>
+        <td> <%= condition.date %></a></td>
+        <td> <%= condition.max_temperature%> </td>
         <td><%= condition.min_temperature%></td>
         <td><%= condition.mean_temperature%></td>
         <td><%= condition.mean_humidity%></td>
         <td><%= condition.mean_visibility%></td>
         <td><%= condition.mean_wind_speed%></td>
         <td><%= condition.mean_precipitation%></td>
-        <td><a class="btn btn-default" href="/conditions/<%= station.id %>/edit" role="button">Edit</a></td>
+        <td>
+          <a href="/conditions/<%= condition.id %>" class="details-button"><button>Details</button></a>
+        </td>
+        <td>
+            <a href="/conditions/<%= condition.id %>/edit" class="edit-button"><button>Edit</button></a>
+        </td>
         <td>
           <form action="/conditions/<%= condition.id %>" method="post">
-          <input type="hidden" name="_method" value="DELETE" />
-          <input class="btn btn-default" type="submit" value="Delete" />
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" name="Delete" value="Delete" class="button delete-button">
           </form>
         </td>
       </tr>

@@ -134,6 +134,8 @@ class BikeShareApp < Sinatra::Base
     ## We need something in here that will also update the Trips once the condition is created.
     @condition = Condition.find(params[:id])
 
+    Condition.update(params[:id].to_i, params[:condition])
+
     redirect "/conditions/#{@condition.id}"
   end
 

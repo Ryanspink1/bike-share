@@ -10,6 +10,7 @@ group :development, :test do
   gem 'activerecord-import'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'faker'
   gem 'launchy'
   gem 'pry'
   gem 'rack-test'

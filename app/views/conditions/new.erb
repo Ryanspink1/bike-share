@@ -1,0 +1,50 @@
+<div class="container">
+
+  <h1>Create a New Trip</h1>
+
+  <form action="/conditions" method="post">
+
+    <div class="form-group">
+      <label for="">Date</label>
+      <input type="date" name="condition[date]">
+    </div>
+
+    <div class="form-group">
+      <label for="">Max Temperature</label>
+      <input type="textfield" name="condition[max_temperature]" placeholder="00">
+    </div>
+
+    <div class="form-group">
+      <label for="">Min Temperature</label>
+      <input type="textfield" name="condition[min_temperature]" placeholder="00">
+    </div>
+
+    <div class="form-group">
+      <label for="">Mean Temperature</label>
+      <input type="textfield" name="condition[mean_temperature]" placeholder="00">
+    </div>
+
+    <div class="form-group">
+      <label for="">Mean Humidity</label>
+      <input type="textfield" name="condition[mean_humidity]" placeholder="00">
+    </div>
+
+    <div class="form-group">
+      <label for="">Mean Visibility</label>
+      <input type="textfield" name="condition[mean_visibility]" placeholder="00">
+    </div>
+
+    <div class="form-group">
+      <label for="">Mean Wind Speed</label>
+      <input type="textfield" name="condition[mean_wind_speed]" placeholder="00">
+    </div>
+
+    <div class="form-group">
+      <label for="">Mean Precipitation</label>
+      <input type="textfield" name="condition[mean_precipitation]" placeholder="0.0">
+    </div>
+
+    <input type="submit" value="Submit" />
+
+  </form>
+</div>

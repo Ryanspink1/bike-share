@@ -1,12 +1,12 @@
 ENV["RACK_ENV"] = "test"
 require_relative "../spec_helper"
 
-describe "when user clicks the 'Edit' button on the trip details page..." do
+describe "when user clicks the 'Edit' button on the trip index page..." do
   it "they are taken to a new page" do
     setup
 
     visit("/trips")
-    find_link("Edit").click
+    first(:link, "Edit").click
 
     expect page.has_current_path?("/trips/1/edit")
   end
@@ -15,8 +15,9 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
     it "and update the start station" do
       setup
       visit("/trips")
-      find_link("Edit").click
-      trip = Trip.first
+      first(:link, "Edit").click
+
+      trip = Trip.find(2)
 
       expect(trip.start_station.name).to eq("New Victoria St")
 
@@ -32,8 +33,8 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
     it "and update the end station" do
       setup
       visit("/trips")
-      find_link("Edit").click
-      trip = Trip.first
+      first(:link, "Edit").click
+      trip = Trip.find(2)
 
       expect(trip.start_station.name).to eq("New Victoria St")
 
@@ -43,31 +44,29 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
       trip.reload
 
       expect(trip.end_station.name).to eq("West Earl Ave")
-      expect page.has_current_path?("/trips/1/")
+      expect page.has_current_path?("/trips/2/")
     end
 
     describe "and update the start date" do
       it "" do
         setup
         visit("/trips")
-        find_link("Edit").click
-        trip = Trip.first
+        first(:link, "Edit").click
+        trip = Trip.find(1)
 
         expect(trip.formatted_start_date).to eq("01/01/2017 11:10:00")
 
         fill_in("trip[start_date]", :with => "01/01/2017 11:11:00")
         click_button("Submit")
 
-        trip.reload
-
-        expect(trip.formatted_start_date).to eq("01/01/2017 11:11:00")
+        expect page.has_content?("01/01/2017 11:11:00")
       end
 
       it "... which automatically updates the duration" do
         setup
         visit("/trips")
-        find_link("Edit").click
-        trip = Trip.first
+        first(:link, "Edit").click
+        trip = Trip.find(1)
 
         expect(trip.duration).to eq(300)
         expect(trip.formatted_end_date).to eq("01/01/2017 11:15:00")
@@ -86,8 +85,8 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
       it "" do
         setup
         visit("/trips")
-        find_link("Edit").click
-        trip = Trip.first
+        first(:link, "Edit").click
+        trip = Trip.find(2)
 
         expect(trip.formatted_end_date).to eq("01/01/2017 11:15:00")
 
@@ -102,8 +101,8 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
       it "... which automatically updates the duration" do
         setup
         visit("/trips")
-        find_link("Edit").click
-        trip = Trip.first
+        first(:link, "Edit").click
+        trip = Trip.find(2)
 
         expect(trip.duration).to eq(300)
 
@@ -120,8 +119,8 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
     it "and update the bike id" do
       setup
       visit("/trips")
-      find_link("Edit").click
-      trip = Trip.first
+      first(:link, "Edit").click
+      trip = Trip.find(2)
 
       expect(trip.bike_id).to eq(100)
 
@@ -137,8 +136,8 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
       it "with a 5 digit string" do
         setup
         visit("/trips")
-        find_link("Edit").click
-        trip = Trip.first
+        first(:link, "Edit").click
+        trip = Trip.find(2)
 
         expect(trip.zip_code).to eq("12345")
 
@@ -153,8 +152,8 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
       it "with a 4 digit string" do
         setup
         visit("/trips")
-        find_link("Edit").click
-        trip = Trip.first
+        first(:link, "Edit").click
+        trip = Trip.find(2)
 
         expect(trip.zip_code).to eq("12345")
 
@@ -169,8 +168,8 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
       it "to a blank field" do
         setup
         visit("/trips")
-        find_link("Edit").click
-        trip = Trip.first
+        first(:link, "Edit").click
+        trip = Trip.find(2)
 
         expect(trip.zip_code).to eq("12345")
 

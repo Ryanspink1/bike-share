@@ -14,3 +14,12 @@
     </tr>
   </table>
 </div>
+
+<h3><%= @station.name %></h3>
+<h4>Number of Rides Started at this Station: <%= @station.trips_started.count %></h4>
+<h4>Number of Rides Ended at this Station: <%= @station.trips_ended.count %></h4>
+<h4>Most Frequent Destination Station (for rides that began at this station): <%= @station.most_frequent_destination_station.name %> </h4>
+<h4>Most Frequent Origination Station (for rides that ended at this station): <%= @station.most_frequent_starting_station.name %></h4>
+<h4>Date with Highest Number of Trips Started at this Station: <%= @station.date_with_highest_number_of_trips %></h4>
+<h4>Most Frequent Zip Code for Users Starting Trips at this Station: <%= @station.most_frequent_zip %></h4>
+<h4>Bike ID Most Frequently Starting a Trip at this Station: <%= @station.most_frequent_bike %></h4>

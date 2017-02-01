@@ -6,7 +6,6 @@
 .custom-nav {
   padding: 10px 0 10px 0;
   color: black;
-  background: #c4c4c4;
 }
 
 
@@ -14,13 +13,44 @@
   padding: 10px 50px 10px 50px;
 }
 
-td, th {
+.banner {
+  background-image: url(https://static.pexels.com/photos/65099/pexels-photo-65099.jpeg)
+}
+
+.jumbotron {
+    background-image: url(https://static.pexels.com/photos/65099/pexels-photo-65099.jpeg);
+    margin-bottom: 10px;
+    padding: 100px 0 100px 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    background-size: cover;
+
+    color: white;
+    text-align: right;
+}
+
+.jumbotron .blurb{
+  width: 50%;
+  margin-left: 560px;
+}
+
+.descriptors {
+  padding: 10px 10px 20px 10px;
+  text-align: Center;
+}
+
+.home-page {
+  background-color: white:
+}
+
+
+/*td, th {
 	padding: 5px;
 	border: 1px solid black;
 	text-align: center;
-}
+}*/
 
-body {
+/*body {
 	padding: 10px;
-}
-
+}*/

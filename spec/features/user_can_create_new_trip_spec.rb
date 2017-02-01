@@ -45,7 +45,5 @@ describe "When user submits a form" do
     within(".zip-code") do
       expect page.has_content?("80218")
     end
-
-
   end
 end

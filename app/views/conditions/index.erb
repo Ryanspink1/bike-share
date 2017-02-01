@@ -1,0 +1,46 @@
+<div  class="container">
+
+  <h1>Conditions</h1>
+
+  <table class = "table">
+    <tr>
+      <th>Date</th>
+      <th>Max Temperature</th>
+      <th>Min Temperature</th>
+      <th>Mean Temperature</th>
+      <th>Mean Humidity</th>
+      <th>Mean Visibility</th>
+      <th>Mean Wind Speed</th>
+      <th>Mean Precipitaton</th>
+      <th>Details</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <% @conditions.each do |condition| %>
+      <tr>
+        <!-- Need to change these ids to a class to follow form from station index -->
+        <td> <%= condition.date %></a></td>
+        <td> <%= condition.max_temperature%> </td>
+        <td><%= condition.min_temperature%></td>
+        <td><%= condition.mean_temperature%></td>
+        <td><%= condition.mean_humidity%></td>
+        <td><%= condition.mean_visibility%></td>
+        <td><%= condition.mean_wind_speed%></td>
+        <td><%= condition.mean_precipitation%></td>
+        <td>
+          <a href="/conditions/<%= condition.id %>" class="details-button"><button>Details</button></a>
+        </td>
+        <td>
+            <a href="/conditions/<%= condition.id %>/edit" class="edit-button"><button>Edit</button></a>
+        </td>
+        <td>
+          <form action="/conditions/<%= condition.id %>" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" name="Delete" value="Delete" class="button delete-button">
+          </form>
+        </td>
+      </tr>
+    <% end  %>
+
+  </table>
+</div>

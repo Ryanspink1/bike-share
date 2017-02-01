@@ -1,6 +1,8 @@
-<h1>Trips</h1>
 
-<table>
+<div class = "container">
+  <h1>Trips</h1>
+
+<table class="table">
   <thead>
   <tr>
     <th>Start Station</th>
@@ -26,11 +28,11 @@
         <td><%= trip.subscription_type.capitalize %></td>
         <td><%= trip.zip_code %></td>
         <td>
-          <a href="/trips/<%= trip.id %>" class="details-button"><button>Details</button></a>
-            <a href="/trips/<%= trip.id %>/edit" class="edit-button"><button>Edit</button></a>
+          <a href="/trips/<%= trip.id %>"><button class="btn btn-info">Details</button></a>
+            <a href="/trips/<%= trip.id %>/edit" ><button class="btn btn-success">Edit</button></a>
           <form action="/trips/<%= trip.id %>" method="post">
             <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" name="Delete" value="Delete" class="button delete-button">
+            <input type="submit" name="Delete" value="Delete" class="btn btn-danger">
           </form>
         </td>
       </tr>
@@ -39,3 +41,5 @@
 </table>
 
 <%= will_paginate @trips %>
+
+</div>

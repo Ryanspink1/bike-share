@@ -1,0 +1,41 @@
+<div class="container">
+
+  <h1>Edit Condition Info</h1>
+
+  <form action='/conditions/<%= @condition.id %>' method = "POST">
+    <input type="hidden" name="_method" value="PUT" />
+    <div class="form-group">
+      <label for="">Date</label>
+      <input class="form-control" type="text" name="condition[date]" value="<%= @condition.date %>" />
+    </div>
+    <div class="form-group" id="max-temp">
+      <label for="">Max Temperature</label>
+      <input class="form-control" type="text" name="condition[max_temperature]" value="<%= @condition.max_temperature %>"/>
+    </div>
+    <div class="form-group" id="min-temp">
+      <label for="">Min Temperature</label>
+      <input class="form-control" type="number" name="condition[min_temperature]" value="<%= @condition.min_temperature %>"/>
+    </div>
+    <div class="form-group" id="mean-temp">
+      <label for="">Mean Temperature</label>
+      <input class="form-control" type="number" name="condition[mean_temperature]" value="<%= @condition.mean_temperature %>"/>
+    </div>
+    <div class="form-group" id="mean-humidity">
+      <label for="">Mean Humidity</label>
+      <input class="form-control" type="number" name="condition[mean_humidity]" value="<%= @condition.mean_humidity %>"/>
+    </div>
+    <div class="form-group" id="mean-visibility">
+      <label for="">Mean Visibility</label>
+      <input class="form-control" type="number" name="condition[mean_visibility]" value="<%= @condition.mean_visibility %>"/>
+    </div>
+    <div class="form-group" id="mean-wind_speed">
+      <label for="">Mean Wind Speed</label>
+      <input class="form-control" type="number" name="condition[mean_wind_speed]" value="<%= @condition.mean_wind_speed %>"/>
+    </div>
+    <div class="form-group" id="mean-precipitation">
+      <label for="">Mean Precipitation</label>
+      <input class="form-control" type="number" name="condition[mean_precipitation]" value="<%= @condition.mean_precipitation %>"/>
+    </div>
+    <input class="btn btn-default" type="submit" value="Update Condition" />
+  </form>
+</div>

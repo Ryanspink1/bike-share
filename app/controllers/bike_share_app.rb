@@ -104,6 +104,11 @@ class BikeShareApp < Sinatra::Base
     redirect "/trips"
   end
 
+  get "/trips-dashboard" do
+   @trips = Trip.all
+   erb :"trips/dashboard"
+ end
+
   get "/conditions" do
     @conditions = Condition.all
     erb :"conditions/index"
@@ -134,6 +139,8 @@ class BikeShareApp < Sinatra::Base
   put "/conditions/:id" do
     @condition = Condition.find(params[:id])
     @condition.remove_id_from_trips unless @condition.date_same?
+
+    Condition.update(params[:id].to_i, params[:condition])
 
     redirect "/conditions/#{@condition.id}"
   end

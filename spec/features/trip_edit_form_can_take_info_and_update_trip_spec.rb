@@ -1,7 +1,7 @@
 ENV["RACK_ENV"] = "test"
 require_relative "../spec_helper"
 
-describe "when user clicks the 'Edit' button on the trip details page..." do
+describe "when user clicks the 'Edit' button on the trip index page..." do
   it "they are taken to a new page" do
     setup_1
 
@@ -17,6 +17,7 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
       visit("/trips")
       first(:link, "Edit").click
       trip = Trip.find(1)
+
 
       expect(trip.start_station.name).to eq("New Victoria St")
 
@@ -40,6 +41,7 @@ describe "when user clicks the 'Edit' button on the trip details page..." do
 
       expect page.has_current_path?("/trips/1/")
       expect(page.all("//td[@class='end-station']")[0].text).to eq("West Earl Ave")
+
     end
 
     describe "and update the start date" do

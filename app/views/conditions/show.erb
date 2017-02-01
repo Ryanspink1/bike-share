@@ -1,0 +1,26 @@
+<div class = "container">
+
+  <table class="table ">
+    <tr>
+      <th>Date</th>
+      <th>Max Temperature</th>
+      <th>Min Temperature</th>
+      <th>Mean Temperature</th>
+      <th>Mean Humidity</th>
+      <th>Mean Visibility</th>
+      <th>Mean Wind Speed</th>
+      <th>Mean Precipitation</th>
+    </tr>
+    <tr>
+      <td class="date"><%= @condition.formatted_date %></td>
+      <td class="max-temperature"><%= @condition.max_temperature %></td>
+      <td class="min-temperature"><%= @condition.min_temperature %></td>
+      <td class="mean-temperature"><%= @condition.mean_temperature %></td>
+      <td class="mean-humidity"><%= @condition.mean_humidity %></td>
+      <td class="mean-visibility"><%= @condition.mean_visibility %></td>
+      <td class="mean-wind-speed"><%= @condition.mean_wind_speed %></td>
+      <td class="mean-precipitation"><%= @condition.mean_precipitation %></td>
+    </tr>
+  </table>
+
+</div>

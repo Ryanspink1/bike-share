@@ -28,15 +28,15 @@
         <td><%= condition.mean_wind_speed%></td>
         <td><%= condition.mean_precipitation%></td>
         <td>
-          <a href="/conditions/<%= condition.id %>" class="details-button"><button>Details</button></a>
+          <a href="/conditions/<%= condition.id %>" class="details-button"><button class = "btn btn-info">Details</button></a>
         </td>
         <td>
-            <a href="/conditions/<%= condition.id %>/edit" class="edit-button"><button>Edit</button></a>
+            <a href="/conditions/<%= condition.id %>/edit" class="edit-button"><button class="btn btn-success">Edit</button></a>
         </td>
         <td>
           <form action="/conditions/<%= condition.id %>" method="post">
             <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" name="Delete" value="Delete" class="button delete-button">
+            <input class="btn btn-danger" type="submit" name="Delete" value="Delete" class="button delete-button">
           </form>
         </td>
       </tr>

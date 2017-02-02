@@ -1,0 +1,139 @@
+<div class="container">
+<h1> Weather Conditions Stats </h1>
+<h4>Number of Rides by Temperature</h4>
+<table class="table" id="number_of_rides_by_temp">
+  <tr>
+    <th>
+      Temperature
+    </th>
+    <th>
+      Highest
+    </th>
+    <th>
+      Lowest
+    </th>
+    <th>
+      Average
+    </th>
+  </tr>
+  <% @rides_temp_data.each do |range, data| %>
+    <tr>
+      <td>
+        <%= range %>
+      </td>
+      <td>
+        <%= data.values.max %>
+      </td>
+      <td>
+        <%= data.values.min %>
+      </td>
+      <td>
+        <%= (data.values.reduce(:+) / data.count).round(0).to_i %>
+      </td>
+    </tr>
+  <% end  %>
+</table>
+
+<h4>Number of Rides by Precipitation</h4>
+<table class="table" id="number_of_rides_by_precip">
+  <tr>
+    <th>
+      Inch
+    </th>
+    <th>
+      Highest
+    </th>
+    <th>
+      Lowest
+    </th>
+    <th>
+      Average
+    </th>
+  </tr>
+  <% @rides_precip_data.each do |range, data| %>
+    <tr>
+      <td>
+        <%= range %>
+      </td>
+      <td>
+        <%= data.values.max %>
+      </td>
+      <td>
+        <%= data.values.min %>
+      </td>
+      <td>
+        <%= (data.values.reduce(:+) / data.count).round(0).to_i %>
+      </td>
+    </tr>
+  <% end  %>
+</table>
+
+<h4>Number of Rides by Wind Speed</h4>
+<table class="table" id="number_of_rides_by_precip">
+  <tr>
+    <th>
+      MPH
+    </th>
+    <th>
+      Highest
+    </th>
+    <th>
+      Lowest
+    </th>
+    <th>
+      Average
+    </th>
+  </tr>
+  <% @rides_wind_speed_data.each do |range, data| %>
+    <tr>
+      <td>
+        <%= range %>
+      </td>
+      <td>
+        <%= data.values.max %>
+      </td>
+      <td>
+        <%= data.values.min %>
+      </td>
+      <td>
+        <%= (data.values.reduce(:+) / data.count).round(0).to_i %>
+      </td>
+    </tr>
+  <% end  %>
+</table>
+
+<h4>Number of Rides by Visibility</h4>
+<table class="table" id="number_of_rides_by_precip">
+  <tr>
+    <th>
+      MPH
+    </th>
+    <th>
+      Highest
+    </th>
+    <th>
+      Lowest
+    </th>
+    <th>
+      Average
+    </th>
+  </tr>
+  <% @rides_visibility_data.each do |range, data| %>
+    <tr>
+      <td>
+        <%= range %>
+      </td>
+      <td>
+        <%= data.values.max %>
+      </td>
+      <td>
+        <%= data.values.min %>
+      </td>
+      <td>
+        <%= (data.values.reduce(:+) / data.count).round(0).to_i %>
+      </td>
+    </tr>
+  <% end  %>
+</table>
+
+</div>

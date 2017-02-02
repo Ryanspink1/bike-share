@@ -136,7 +136,6 @@ class Trip < ActiveRecord::Base
   end
 
   def self.date_with_most_rides
-
     (trips_by_date[trips_by_date.keys.max][0]).to_date.strftime("%m/%d/%Y")
   end
 

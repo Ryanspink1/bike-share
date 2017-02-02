@@ -75,14 +75,16 @@ condition_contents = CSV.read(weather_csv, headers: true, header_converters: :sy
 conditions_list = []
 ten_percent = (condition_contents.length * 0.1).round(0).to_i
 condition_contents.each_with_index do |row, i|
-  condition = Condition.new(date: Date.strptime(row[:date],"%m/%d/%Y"),
+  date_formatted = "#{row[:date][0..-3]}20#{row[:date][-2..-1]}"
+  condition = Condition.new(
+    date:               Date.strptime(date_formatted,"%m/%d/%Y"),
     max_temperature:    row[:max_temperature],
     min_temperature:    row[:min_temperature],
     mean_temperature:   row[:mean_temperature],
     mean_humidity:      row[:mean_humidity],
-    mean_visibility:    row[:mean_visibility],
-    mean_wind_speed:    row[:mean_wind_speed],
-    mean_precipitation: row[:mean_precipitation],
+    mean_visibility:    row[:mean_visibility_miles],
+    mean_wind_speed:    row[:mean_wind_speed_mph],
+    mean_precipitation: row[:precipitation_inches],
   )
   if conditions_list.length == 1000
     Condition.import conditions_list
@@ -105,4 +107,3 @@ end_time = Time.now
 duration = ((end_time - start_time) / 60).round(2)
 
 puts "weather.csv file upload complete! (#{Condition.count} records in #{duration} minutes)"
-

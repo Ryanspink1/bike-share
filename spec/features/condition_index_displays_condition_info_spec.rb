@@ -4,7 +4,7 @@ require 'pry'
 
   describe 'When a user visits the condition index page'do
     it 'they see the condition header' do
-      setup
+      setup_condition_index
       visit("/conditions")
 
       within("h1") do
@@ -25,7 +25,7 @@ require 'pry'
 
     describe "they see all of the data..." do
       it "for one condition" do
-        setup
+        setup_condition_index
         visit("/conditions")
 
         table_cells = page.all("tr td")
@@ -66,8 +66,8 @@ require 'pry'
     end
 
     it "for two trips" do
-      setup
-      setup_2
+      setup_condition_index
+      setup_condition_index_2
       visit("/conditions")
 
       table_cells = page.all("tr td")
@@ -133,7 +133,7 @@ require 'pry'
 
     describe "they can click on the edit link to" do
       it "navigate to the corresponding edit page" do
-        setup
+        setup_condition_index
         visit('/conditions')
 
         table_cells = page.all("tr td")
@@ -147,7 +147,7 @@ require 'pry'
 
     describe "they can click on the details link to" do
       it "navigate to the corresponding show page" do
-        setup
+        setup_condition_index
         visit('/conditions')
 
         table_cells = page.all("tr td")
@@ -161,7 +161,7 @@ require 'pry'
 
     describe "they can click on the delete link to" do
       it "update index" do
-        setup
+        setup_condition_index
         visit('/conditions')
 
         table_cells = page.all("tr td")
@@ -177,7 +177,7 @@ require 'pry'
 
 
 
-def setup
+def setup_condition_index
   Condition.create(
     date:               "01/01/2017",
     max_temperature:    50,
@@ -190,7 +190,7 @@ def setup
   )
 end
 
-def setup_2
+def setup_condition_index_2
   Condition.create(
     date:               "02/02/2017",
     max_temperature:    60,

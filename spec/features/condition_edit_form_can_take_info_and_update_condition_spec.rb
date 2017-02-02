@@ -3,7 +3,7 @@ require_relative "../spec_helper"
 
   describe 'When a user visits an edit page' do
     it 'the correct form parameters are presented' do
-    setup
+    setup_condition_edit
     visit ("/conditions/1/edit")
 
     within("h1") do
@@ -24,7 +24,7 @@ require_relative "../spec_helper"
 
   describe "the user is able to fill out the edit form..." do
     it "and update the date" do
-      setup
+      setup_condition_edit
       visit("/conditions/1/edit")
       condition = Condition.first
 
@@ -40,7 +40,7 @@ require_relative "../spec_helper"
     end
 
     it "and update the max temperature" do
-      setup
+      setup_condition_edit
       visit("/conditions/1/edit")
       condition = Condition.first
 
@@ -58,7 +58,7 @@ require_relative "../spec_helper"
     end
 
     it "and update the min temperature" do
-      setup
+      setup_condition_edit
       visit("/conditions/1/edit")
       condition = Condition.first
 
@@ -76,7 +76,7 @@ require_relative "../spec_helper"
     end
 
     it "and update the mean temperature" do
-      setup
+      setup_condition_edit
       visit("/conditions/1/edit")
       condition = Condition.first
 
@@ -94,7 +94,7 @@ require_relative "../spec_helper"
     end
 
     it "and update the mean humidity" do
-      setup
+      setup_condition_edit
       visit("/conditions/1/edit")
       condition = Condition.first
 
@@ -112,7 +112,7 @@ require_relative "../spec_helper"
     end
 
     it "and update the mean visibility" do
-      setup
+      setup_condition_edit
       visit("/conditions/1/edit")
       condition = Condition.first
 
@@ -130,7 +130,7 @@ require_relative "../spec_helper"
     end
 
     it "and update the mean wind speed" do
-      setup
+      setup_condition_edit
       visit("/conditions/1/edit")
       condition = Condition.first
 
@@ -148,7 +148,7 @@ require_relative "../spec_helper"
     end
 
     it "and update the mean precipitation" do
-      setup
+      setup_condition_edit
       visit("/conditions/1/edit")
       condition = Condition.first
 
@@ -165,11 +165,14 @@ require_relative "../spec_helper"
       expect page.has_current_path?("/condition/1/")
     end
   end
+
+
+
 end
 
 
 
-def setup
+def setup_condition_edit
   Condition.create(
     date:               "01/01/2017",
     max_temperature:    50,

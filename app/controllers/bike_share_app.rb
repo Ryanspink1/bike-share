@@ -121,7 +121,7 @@ class BikeShareApp < Sinatra::Base
   post "/conditions" do
     params[:condition] = Condition.format_parameters(params[:condition])
     @condition = Condition.create(params[:condition])
-    @condition.remove_id_from_trips unless @condition.date_same?
+    @condition.remove_id_from_trips unless @condition.date_same?(params[:condition][:date])
 
     redirect "/conditions/#{@condition.id}"
   end
@@ -138,7 +138,7 @@ class BikeShareApp < Sinatra::Base
 
   put "/conditions/:id" do
     @condition = Condition.find(params[:id])
-    @condition.remove_id_from_trips unless @condition.date_same?
+    @condition.remove_id_from_trips unless @condition.date_same?(params[:condition][:date])
 
     Condition.update(params[:id].to_i, params[:condition])
 

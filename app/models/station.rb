@@ -54,6 +54,12 @@ class Station < ActiveRecord::Base
     trips_by_day.key(trips_by_day.values.max)
   end
 
+  def self.oldest
+    where(installation_date: minimum(:installation_date)).order(:name)
+  end
 
+  def self.newest
+    where(installation_date: maximum(:installation_date)).order(:name)
+  end
 
 end

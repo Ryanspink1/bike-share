@@ -10,7 +10,7 @@ require_relative '../spec_helper'
       visit ('/station-dashboard')
 
       within("#station_count") do
-        expect(page).to have_content("Total count of stations:")
+        expect  page.has_content?("Total count of stations:")
       end
 
       within("#average_bikes") do
@@ -56,7 +56,7 @@ require_relative '../spec_helper'
     visit ('/station-dashboard')
 
     within("#station_count") do
-      expect(page).to have_content(2)
+      expect page.has_content?(2)
     end
 
     within("#average_bikes") do

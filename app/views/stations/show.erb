@@ -13,13 +13,39 @@
       <td class="install_date"><%= @station.installation_date%></td>
     </tr>
   </table>
-</div>
 
-<h3><%= @station.name %></h3>
-<h4>Number of Rides Started at this Station: <%= @station.trips_started.count %></h4>
-<h4>Number of Rides Ended at this Station: <%= @station.trips_ended.count %></h4>
-<h4>Most Frequent Destination Station (for rides that began at this station): <%= @station.most_frequent_destination_station.name %> </h4>
-<h4>Most Frequent Origination Station (for rides that ended at this station): <%= @station.most_frequent_starting_station.name %></h4>
-<h4>Date with Highest Number of Trips Started at this Station: <%= @station.date_with_highest_number_of_trips %></h4>
-<h4>Most Frequent Zip Code for Users Starting Trips at this Station: <%= @station.most_frequent_zip %></h4>
-<h4>Bike ID Most Frequently Starting a Trip at this Station: <%= @station.most_frequent_bike %></h4>
+  <table class="table">
+    <tr>
+      <th>Analysis</th>
+      <th>Data</th>
+    </tr>
+    <tr>
+      <td>Number of Rides Started at this Station:</td>
+      <td><%= @station.trips_started.count %></td>
+    </tr>
+    <tr>
+      <td>Number of Rides Ended at this Station</td>
+      <td><%= @station.trips_ended.count %></td>
+    </tr>
+    <tr>
+      <td>Most Frequent Destination Station (for rides that began at this station)</td>
+      <td><%= @station.most_frequent_destination_station.name %></td>
+    </tr>
+    <tr>
+      <td>Most Frequent Origination Station (for rides that ended at this station)</td>
+      <td><%= @station.most_frequent_starting_station.name %></td>
+    </tr>
+    <tr>
+      <td>Date with Highest Number of Trips Started at this Station</td>
+      <td><%= @station.date_with_highest_number_of_trips %></td>
+    </tr>
+    <tr>
+      <td>Most Frequent Zip Code for Users Starting Trips at this Station:</td>
+      <td><%= @station.most_frequent_zip %></td>
+    </tr>
+    <tr>
+      <td>Bike ID Most Frequently Starting a Trip at this Station: </td>
+      <td><%= @station.most_frequent_bike %></td>
+    </tr>
+  </table>
+</div>

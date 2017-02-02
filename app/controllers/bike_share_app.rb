@@ -105,9 +105,55 @@ class BikeShareApp < Sinatra::Base
   end
 
   get "/trips-dashboard" do
-    @trips = Trip.all
-    erb :"trips/dashboard"
-    
+   @trips = Trip.all
+   erb :"trips/dashboard"
+ end
+
+  get "/conditions" do
+    @conditions = Condition.all
+    erb :"conditions/index"
+  end
+
+  get "/conditions/new" do
+    erb :"conditions/new"
+  end
+
+  post "/conditions" do
+    params[:condition] = Condition.format_parameters(params[:condition])
+    @condition = Condition.create(params[:condition])
+    @condition.remove_id_from_trips unless @condition.date_same?(params[:condition][:date])
+
+    redirect "/conditions/#{@condition.id}"
+  end
+
+  get "/conditions/:id" do
+    @condition = Condition.find(params[:id])
+    erb :"conditions/show"
+  end
+
+  get "/conditions/:id/edit" do
+    @condition = Condition.find(params[:id])
+    erb :"conditions/edit"
+  end
+
+  put "/conditions/:id" do
+    @condition = Condition.find(params[:id])
+    @condition.remove_id_from_trips unless @condition.date_same?(params[:condition][:date])
+
+    Condition.update(params[:id].to_i, params[:condition])
+
+    redirect "/conditions/#{@condition.id}"
+  end
+
+  delete "/conditions/:id" do
+    @condition = Condition.destroy(params[:id])
+    @condition.remove_id_from_trips
+    redirect "/conditions"
+  end
+
+  get "/condition-dashboard" do
+    @conditions = Condition.all
+    erb :"conditions/dashboard"
   end
 
 end

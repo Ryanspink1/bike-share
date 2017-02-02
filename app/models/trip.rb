@@ -1,6 +1,7 @@
 class Trip < ActiveRecord::Base
   belongs_to :start_station, :class_name => "Station"
   belongs_to :end_station, :class_name => "Station"
+  belongs_to :condition
   validates :duration, presence: true
   validates :start_date, presence: true
   validates :start_station_id, presence: true
@@ -48,6 +49,7 @@ class Trip < ActiveRecord::Base
   end
 
   def self.average_duration
+    # binding.pry
     Time.at(average(:duration).round(0).to_i).utc.strftime(TRIP_TIME_FORMAT)
   end
 
@@ -84,11 +86,11 @@ class Trip < ActiveRecord::Base
   end
 
   def self.most_rides_on_a_bike
-    group_by_bike.keys.max
+    group_by_bike.values.max
   end
 
   def self.least_rides_on_a_bike
-    group_by_bike.keys.min
+    group_by_bike.values.min
   end
 
   def self.group_by_subscription_type
@@ -134,16 +136,18 @@ class Trip < ActiveRecord::Base
   end
 
   def self.date_with_most_rides
-    trips_by_date.sort.last
+
+    (trips_by_date[trips_by_date.keys.max][0]).to_date.strftime("%m/%d/%Y")
   end
 
   def self.date_with_least_rides
-    trips_by_date.sort.first
+    (trips_by_date[trips_by_date.keys.min][0]).to_date.strftime("%m/%d/%Y")
   end
 
   def self.month_by_month
     trips = self.group_trip_by_date
-    month_breakdown = trips.group_by {|trip| trip[0].to_s[0..6]}
+    month_breakdown = trips.group_by {|trip|
+   (trip[0].to_s[0..3] + '/' + trip[0].to_s[8..9])}
     month_breakdown.reduce({}) do |month_by_month, (month, trips)|
         month_by_month.merge({month => trips.count})
     end

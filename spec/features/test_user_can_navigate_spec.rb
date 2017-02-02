@@ -25,6 +25,8 @@ describe "When a user uses the nav bar" do
     end
 
     it "to the station dashboard" do
+      Station.create(name: "Name Station", city_id: City.create(name:"Denver").id, dock_count: 20, installation_date: "09/09/2016")
+
       visit('/')
       find_link("Station Dashboard").click
 

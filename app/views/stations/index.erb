@@ -17,11 +17,11 @@
         <td id="city"><%= station.city.name%> </td>
         <td><%= station.dock_count%></td>
         <td><%= station.installation_date%></td>
-        <td><a class="btn btn-default" href="/stations/<%= station.id %>/edit" role="button">Edit</a></td>
+        <td><a class="btn btn-success" href="/stations/<%= station.id %>/edit" role="button">Edit</a></td>
         <td>
           <form action="/stations/<%= station.id %>" method="post">
           <input type="hidden" name="_method" value="DELETE" />
-          <input class="btn btn-default" type="submit" value="Delete" />
+          <input class="btn btn-danger" type="submit" value="Delete" />
           </form>
         </td>
       </tr>

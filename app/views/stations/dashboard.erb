@@ -1,24 +1,71 @@
-<h1>Stats</h1>
 
-<h4 id='station_count'>Total count of stations: <%= @stations.count %></h4>
-<h4 id='average_bikes'>Average bikes available per station: <%= @stations.average_bikes_per_station %></h4>
-<h4 id='most_bikes_at_station'>Most bikes available at a station: <%= @stations.maximum(:dock_count) %></h4>
-<h4 id='stations_with_most_bikes'>Stations where the most bikes are available: </h4>
-<ul>
-  <% @stations.with_most_bikes.each do |station| %>
-    <li>
-      <%= station.name %>
-    </li>
-  <% end %>
-</ul>
-<h4 id='fewest_bikes_at_station'>Fewest bikes available at a station: <%= @stations.minimum(:dock_count) %></h4>
-<h4 id='stations_with_fewest_bikes'>Stations where the fewest bikes are available: </h4>
-<ul>
-  <% @stations.with_fewest_bikes.each do |station| %>
-    <li>
-      <%= station.name %>
-    </li>
-  <% end %>
-</ul>
-<h4 id='newest_station'>Newest station: <%= @stations.maximum(:installation_date) %></h4>
-<h4 id='oldest_station'>Oldest station: <%= @stations.minimum(:installation_date) %></h4>
+<div class="container">
+  <h1>Stats</h1>
+  <table class="table">
+    <tr>
+      <th>Analysis</th>
+      <th>Data</th>
+    </tr>
+
+    <tr>
+      <td id='station_count'>Total count of stations</td>
+      <td><%= @stations.count %></td>
+    </tr>
+    <tr>
+      <td id='average_bikes'>Average bikes available per station</td>
+      <td><%= @stations.average_bikes_per_station %></td>
+    </tr>
+    <tr>
+      <td id='most_bikes_at_station'>Most bikes available at a station</td>
+      <td><%= @stations.maximum(:dock_count) %></td>
+    </tr>
+    <tr>
+      <td id='stations_with_most_bikes'>Stations where the most bikes are available:</td>
+      <td>
+        <ul>
+        <% @stations.with_most_bikes.each do |station| %>
+          <li>
+            <%= station.name %>
+          </li>
+        <% end %>
+      </ul>
+    </td>
+    </tr>
+    <tr>
+      <td id='fewest_bikes_at_station'>Fewest bikes available at a station:</td>
+      <td><%= @stations.minimum(:dock_count) %></td>
+    </tr>
+    <tr>
+      <td id='stations_with_fewest_bikes'>Stations where the fewest bikes are available</td>
+      <td>
+        <ul>
+        <% @stations.with_fewest_bikes.each do |station| %>
+          <li>
+            <%= station.name %>
+          </li>
+        <% end %>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td id='newest_station'>Newest station</td>
+      <td><ul>
+        <% @stations.newest.each do |station| %>
+          <li>
+            <%= station.name %>
+          </li>
+        <% end %>
+      </ul></td>
+    </tr>
+    <tr>
+      <td id='oldest_station'>Oldest station</td>
+      <td><ul>
+        <% @stations.oldest.each do |station| %>
+          <li>
+            <%= station.name %>
+          </li>
+        <% end %>
+      </ul></td>
+    </tr>
+  </table>
+</div>

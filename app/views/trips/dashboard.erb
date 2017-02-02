@@ -1,20 +1,60 @@
-<h1>Stats</h1>
+<div class="container">
+  <h1>Trip Stats</h1>
 
-<h3>Average Trip Duration: <%= @trips.average_duration %></h3>
-<h3>Longest Ride: <%= @trips.longest_ride %></h3>
-<h3>Shortest Ride: <%= @trips.shortest_ride %></h3>
+  <table class="table">
+    <tr>
+      <th>Analysis</th>
+      <th>Data</th>
+    </tr>
+    <tr>
+      <td>Average Trip Duration</td>
+      <td><%= @trips.average_duration %></td>
+    </tr>
+    <tr>
+      <td>Longest Ride</td>
+      <td><%= @trips.longest_ride %></td>
+    </tr>
+    <tr>
+      <td>Shortest Ride</td>
+      <td><%= @trips.shortest_ride %></td>
+    </tr>
+    <tr>
+      <td>Station With the Most Rides as a Starting Place</td>
+      <td><%= @trips.most_rides_starting.name %></td>
+    </tr>
+    <tr>
+      <td>Station With the Most Rides as an Ending Place</td>
+      <td><%= @trips.most_rides_ending.name %></td>
+    </tr>
+    <tr>
+      <td>Month by Month Breakdown of Number of Rides with Subtotals for Each Year</td>
+      <td><%= @trips.month_by_month %></td>
+    </tr>
+    <tr>
+      <td>Most Ridden Bike with Total Number of Rides for that Bike</td>
+      <td>Bike: <%= @trips.most_ridden_bike %>, Rides: <%= @trips.most_rides_on_a_bike %></td>
+    </tr>
+    <tr>
+      <td>Least Ridden Bike with Total Number of Rides for that Bike</td>
+      <td>Bike: <%= @trips.least_ridden_bike %>, Rides: <%= @trips.least_rides_on_a_bike %></td>
+    </tr>
+    <tr>
+      <td>User Subscription Type breakout with both Count and Percentage</td>
+      <td><ul>
+        <li>Subscribed: <%= @trips.number_of_subscribed %></li>
+        <li>Percent of People with Subscriptions: <%= @trips.percentage_of_subscribed %>%</li>
+        <li>Customers: <%= @trips.number_of_customers %></li>
+        <li>Percent of People without Subscriptions: <%= @trips.percentage_of_customers %>% </li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td>Single Date with Highest Number of Trips with a Count of those Trips</td>
+      <td><%= @trips.date_with_most_rides %></td>
+    </tr>
+    <tr>
+      <td>Single Date with Lowest Number of Trips with a Count of those Trips</td>
+      <td><%= @trips.date_with_least_rides %></td>
+    </tr>
+  </table>
 
-<h3>Station With the Most Rides as a Starting Place: <%= @trips.most_rides_starting.name %></h3>
-<h3>Station With the Most Rides as an Ending Place: <%= @trips.most_rides_ending.name %></h3>
-<h3>Month by Month Breakdown of Number of Rides with Subtotals for Each Year: <%= @trips.month_by_month %></h3>
- <h3>Most Ridden Bike with Total Number of Rides for that Bike: Bike: <%= @trips.most_ridden_bike %>, Rides: <%= @trips.most_rides_on_a_bike %></h3>
-<h3>Least Ridden Bike with Total Number of Rides for that Bike: Bike: <%= @trips.least_ridden_bike %>, Rides: <%= @trips.least_rides_on_a_bike %></h3>
-<h3>User Subscription Type breakout with both Count and Percentage:</h3>
-<ul>
-  <li>Subscribed: <%= @trips.number_of_subscribed %></li>
-  <li>Percent of People with Subscriptions: <%= @trips.percentage_of_subscribed %>%</li>
-  <li>Customers: <%= @trips.number_of_customers %></li>
-  <li>Percent of People without Subscriptions: <%= @trips.percentage_of_customers %>% </li>
-</ul>
-<h3>Single Date with Highest Number of Trips with a Count of those Trips: <%= @trips.date_with_most_rides %></h3>
- <h3>Single Date with Lowest Number of Trips with a Count of those Trips: <%= @trips.date_with_least_rides %></h3>
+</div>
